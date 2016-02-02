@@ -21,8 +21,10 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                <li><a href="#">{{ current_user.username|capitalize }}</a></li>
                 {% else %}
                 <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+                <li><a href="{{ url_for('auth.register') }}">Join Us</a></li>
                 {% endif %}
             </ul>
         </div>
