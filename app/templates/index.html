@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Issues{% endblock %}
+
+{% block page_content %}
+<div class="jumbotron text-center">
+    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+{% endblock %}
