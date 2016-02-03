@@ -9,6 +9,8 @@
     <h1>Log In</h1>
 </div>
     {{ wtf.quick_form(form) }}
-    <p>New to Issues? <a href="{{ url_for('auth.register') }}">Join Us!</a></p>
+    <div>
+      <p>New to Issues? <a href="{{ url_for('auth.register') }}">Join Us!</a></p>
+    </div>
 </div>
 {% endblock %}
