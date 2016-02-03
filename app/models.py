@@ -3,6 +3,39 @@ from flask.ext.login import UserMixin
 from . import db, login_manager
 
 
+class Department(db.Model):
+    '''This class creates a department
+    object.
+    '''
+    __tablename__ = 'departments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120))
+    dept_head = db.Column(db.Integer)
+
+
+class Issue(db.Model):
+    '''This class creates issues objects
+    by user object
+    '''
+    __tablename__ = 'issues'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(70))
+    description = db.Column(db.Text)
+    priority = db.Column(db.Integer)
+    closed = db.Column(db.Boolean, default=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship('User',
+                           backref=db.backref('issues', lazy='dynamic'))
+
+    department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
+    department = db.relationship('Department',
+                                 backref=db.backref('departments',
+                                                    lazy='dynamic'))
+
+
 class Role(db.Model):
     '''This class creates a User Role object
     '''
