@@ -4,6 +4,9 @@
 
 {% block page_content %}
 <div class="jumbotron text-center">
-    
+    <h1><i class="text-danger fa fa-exclamation-circle fa-lg"></i></h1>
+    <h2>Issues</h2>
+    <p class="lead">We can help you sort out <em>some</em> your issues.</p>
+    <a href="{{ url_for('auth.register') }}" class="btn btn-success btn-lg">Join Issues</a>    
 </div>
 {% endblock %}

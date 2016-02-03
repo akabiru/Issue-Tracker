@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div class="jumbotron text-center">
+  {% if issues_len == 0 %}
+  <h1><i class=" text-success fa fa-check-circle"></i></h1>
+  <p class="lead">Looks like we are good here.</p>
+  <p class="lead text-success">{{ issues_len }} Issues Open</p>
+  <a href="{{ url_for('issue.issue') }}" class="btn btn-success">Post an Issue</a>
+  {% else %}
+  {{ issues_len }} Issues
+  {% for issue in issues_ %}
+  {{ issue.name }}
+  {{ issue.description }}
+  {{ issue.priority }}
+  {{ issue.closed }}
+  {{ issue.user_id }}
+  {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}
