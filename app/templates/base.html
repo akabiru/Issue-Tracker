@@ -2,6 +2,11 @@
 
 {% block title %}Issue Tracker{% endblock %}
 
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+{% endblock styles%}
+
 {% block navbar %}
 <div class="navbar navbar-default" role="navigation">
     <div class="container">
@@ -20,11 +25,17 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
-                <li><a href="#">{{ current_user.username|capitalize }}</a></li>
+                <li>
+                <a href="{{ url_for('auth.logout') }}"><i class="fa fa-sign-out"></i>Log Out</a>
+                </li>
+                <li><a href="#"><i class="fa fa-user"></i> {{ current_user.username|capitalize }}</a></li>
                 {% else %}
-                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
-                <li><a href="{{ url_for('auth.register') }}">Join Us</a></li>
+                <li>
+                <a href="{{ url_for('auth.login') }}"><i class="fa fa-sign-in"></i> Log In</a>
+                </li>
+                <li>
+                <a href="{{ url_for('auth.register') }}"><i class="fa fa-user-plus"></i> Join Us</a>
+                </li>
                 {% endif %}
             </ul>
         </div>
@@ -35,10 +46,12 @@
 {% block content %}
 <div class="container">
     {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning text-center">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ message }}
-    </div>
+    <div class="col-md-4 col-md-offset-4">
+        <div class="alert alert-warning text-center">    
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    </div>    
     {% endfor %}
 
     {% block page_content %}{% endblock %}

@@ -2,7 +2,7 @@ from flask import render_template, redirect, request, url_for, flash
 from flask.ext.login import login_user, logout_user, login_required
 from . import auth
 from .. import db
-from ..models import User
+from ..models import User, Role
 from .forms import LoginForm, RegistrationForm
 
 
@@ -30,8 +30,11 @@ def logout():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+        # get the user role default
+        user_role = Role.query.filter_by(name='User').first()
         user = User(username=form.username.data,
                     password=form.password.data)
+        user.role = user_role
         db.session.add(user)
         db.session.commit()
         flash('Welcome to Issues!')
