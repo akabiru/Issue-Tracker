@@ -4,7 +4,20 @@
 {% block title %}Department | Issues{% endblock %}
 
 {% block page_content %}
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6">
+  <div class="page-header text-center">
+    <h1>Departments</h1>    
+  </div>  
+  <ul class="list-group">
+  {% for dept in departments_ %}
+    <li class="list-group-item">
+      <p>{{ dept.name }}</p>
+    </li>
+  {% endfor %}
+  </ul>
+  
+</div>
+<div class="col-md-6">
 <div class="page-header text-center">
   <h1>Add department</h1>
 </div>

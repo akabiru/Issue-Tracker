@@ -33,3 +33,10 @@ class IssueForm(Form):
         super(IssueForm, self).__init__(*args, **kwargs)
         self.department.choices = [
             (dept.id, dept.name) for dept in Department.query.all()]
+
+
+class CommentForm(Form):
+  '''This class creates a CommentForm
+  object
+  '''
+  comment = TextAreaField('Comment')

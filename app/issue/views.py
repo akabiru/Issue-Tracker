@@ -28,6 +28,18 @@ def index():
                            open_issues=open_issues)
 
 
+@issue.route('/issue/closed', methods=['GET', 'POST'])
+@login_required
+def closed():
+    if request.method == 'POST':
+        id_ = request.form.get('cl')
+        issue = Issue.query.filter_by(id=id_).first()
+        issue.closed = True
+        db.session.add(issue)
+        db.session.commit()
+        return redirect(request.args.get('next') or url_for('issue.index'))
+
+
 @issue.route('/issue/me')
 @login_required
 def my_issue():

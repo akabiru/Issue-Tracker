@@ -3,6 +3,20 @@ from flask.ext.login import UserMixin
 from . import db, login_manager
 
 
+class Comments(db.Model):
+    '''This class creates comment objects
+    associated with a user.
+    '''
+
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.Text)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship('User',
+                           backref=db.backref('comments', lazy='dynamic'))
+
+
 class Department(db.Model):
     '''This class creates a department
     object.
@@ -63,6 +77,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     first_name = db.Column(db.String(20))
     last_name = db.Column(db.String(20))
+    is_admin = db.Column(db.Boolean, default=False)
 
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     role = db.relationship('Role',

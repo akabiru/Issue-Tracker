@@ -23,7 +23,8 @@ def issues():
 
 
 @admin.route('/departments', methods=['GET', 'POST'])
-def departments():
+@login_required
+def departments():    
     form = DepartmentForm()
     if form.validate_on_submit():
         # check if department exists
@@ -31,7 +32,7 @@ def departments():
         if dept is None:
             curr_user = current_user.id
             department = Department(name=form.name.data,
-                                    admin_head=form.dept_head.data)
+                                    dept_head=form.dept_head.data)
             department.creator = curr_user
             db.session.add(department)
             db.session.commit()
