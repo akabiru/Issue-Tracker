@@ -1,0 +1,1 @@
+python dealscraper/manager.py
