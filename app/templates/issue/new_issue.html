@@ -3,11 +3,40 @@
 
 {% block title %}New Issue | Issue{% endblock %}
 
+<div class="row">
 {% block page_content %}
-<div class="col-md-6 col-md-offset-3">
+  {% if total_issues == 0 %}
+  <div class="col-md-6 text-center">
+    <h1><i class=" text-success fa fa-check-circle"></i></h1>
+    <p class="lead">Looks like we are good here.</p>
+    <p class="lead text-success">{{ total_issues }} Issues Open</p>
+    <a href="{{ url_for('issue.issue') }}" class="btn btn-success">Post an Issue</a>
+  </div>  
+  {% else %}  
+  <div class="col-md-6">
   <div class="page-header text-center">
-  <h1>Post an Issue</h1>  
-</div>
-{{ wtf.quick_form(form) }}
-</div>
+    <h1>Posted Issues</h1>
+  </div> 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <button class="btn btn-danger btn-sm">Open Issues <span class="badge">{{ open_issues }}</span></button>
+        <button class="btn btn-success btn-sm">Closed Issues <span class="badge">{{ closed_issues }}</span></button>
+      </div>
+      <ul class="list-group">
+      {% for issue in issues_ %}
+        <li class="list-group-item">
+          {{ issue.name }}
+        </li>
+      {% endfor %}
+      </ul>
+    </div>  
+  </div>  
+  {% endif %}
+  <div class="col-md-6">
+    <div class="page-header text-center">
+        <h1>Add Issue</h1>
+    </div>
+    {{ wtf.quick_form(form) }}
+  </div>
 {% endblock %}
+</div>

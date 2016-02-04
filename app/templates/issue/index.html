@@ -1,36 +1,38 @@
 {% extends 'base.html' %}
 
 {% block page_content %}
-<div class="jumbotron">
-  {% if issues_len == 0 %}
+<div class="col-md-8 col-md-offset-2">
+  <div class="jumbotron">
+  {% if total_issues == 0 %}
   <h1><i class=" text-success fa fa-check-circle"></i></h1>
   <p class="lead">Looks like we are good here.</p>
-  <p class="lead text-success">{{ issues_len }} Issues Open</p>
+  <p class="lead text-success">{{ total_issues }} Issues Open</p>
   <a href="{{ url_for('issue.issue') }}" class="btn btn-success">Post an Issue</a>
   {% else %}  
-  {% for issue in issues_ %}
   <div class="panel panel-default">  
-  <div class="panel-heading">
-    <button class="btn btn-danger btn-sm">Open Issues <span class="badge">{{ open_issues }}</span></button>
-    <button class="btn btn-success btn-sm">Closed Issues <span class="badge">{{ closed_issues }}</span></button>
-  </div>    
-  <ul class="list-group">
-    <a href="#" class="list-group-item">
-      <h4 class="list-group-item-heading">
-        {{ issue.name }} <small>Priority: {{ issue.priority }} raised by {{ issue.user }}</small>
-      </h4>
-      <p class="list-group-item-text">
-      {% if issue.closed %}
-      <i class=" text-success fa fa-check-circle fa-sm"></i>
-      {% else %}
-      <i class=" text-danger fa fa-exclamation-circle fa-sm"></i>
-      {% endif %}      
-      {{ issue.description }}      
-      </p>
-    </a>    
-  </ul>
-</div>
-  {% endfor %}
+    <div class="panel-heading">
+      <button class="btn btn-danger btn-sm">Open Issues <span class="badge">{{ open_issues }}</span></button>
+      <button class="btn btn-success btn-sm">Closed Issues <span class="badge">{{ closed_issues }}</span></button>
+    </div>
+    {% for issue in issues_ %} 
+    <ul class="list-group">
+      <a href="#" class="list-group-item">
+        <h4 class="list-group-item-heading">
+          {{ issue.name }} <small>Priority: {{ issue.priority }} raised by {{ issue.user.username }}</small>
+        </h4>
+        <p class="list-group-item-text">
+        {% if issue.closed %}
+        <i class=" text-success fa fa-check-circle fa-sm"></i>
+        {% else %}
+        <i class=" text-danger fa fa-exclamation-circle fa-sm"></i>
+        {% endif %}      
+        {{ issue.description }}      
+        </p>
+      </a> 
+    </ul>
+    {% endfor %}
+  </div>  
   {% endif %}
+</div>
 </div>
 {% endblock %}

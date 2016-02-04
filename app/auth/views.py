@@ -37,6 +37,6 @@ def register():
         user.role = user_role
         db.session.add(user)
         db.session.commit()
-        flash('Welcome to Issues!')
+        flash('Welcome to Issues! \n Please login to continue.')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)

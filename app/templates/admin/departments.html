@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{%  import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Department | Issues{% endblock %}
+
+{% block page_content %}
+<div class="col-md-6 col-md-offset-3">
+<div class="page-header text-center">
+  <h1>Add department</h1>
+</div>
+  {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}

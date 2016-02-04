@@ -24,6 +24,7 @@
                 {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('main.index') }}">Home</a></li>                
                 <li><a href="{{ url_for('issue.issue') }}">New Issue</a></li>
+                <li><a href="{{ url_for('issue.my_issue') }}">My Issues</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -58,6 +59,7 @@
     {% endfor %}
 
     {% block page_content %}{% endblock %}
+    
 </div>
 {% endblock %}
 

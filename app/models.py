@@ -10,7 +10,7 @@ class Department(db.Model):
     __tablename__ = 'departments'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120))
+    name = db.Column(db.String(120), unique=True)
     dept_head = db.Column(db.Integer)
 
 
@@ -23,7 +23,7 @@ class Issue(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(70))
     description = db.Column(db.Text)
-    priority = db.Column(db.Integer)
+    priority = db.Column(db.String(10))
     closed = db.Column(db.Boolean, default=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -47,8 +47,8 @@ class Role(db.Model):
     def __init__(self, name):
         self.name = name
 
-    # def __repr__(self):
-    #     return '%s' % self.name
+    def __repr__(self):
+        return '<User %r>' % self.name
 
 
 class User(UserMixin, db.Model):
