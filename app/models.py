@@ -47,8 +47,8 @@ class Role(db.Model):
     def __init__(self, name):
         self.name = name
 
-    def __repr__(self):
-        return '<Role %r>' % self.name
+    # def __repr__(self):
+    #     return '%s' % self.name
 
 
 class User(UserMixin, db.Model):

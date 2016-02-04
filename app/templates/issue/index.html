@@ -1,20 +1,35 @@
 {% extends 'base.html' %}
 
 {% block page_content %}
-<div class="jumbotron text-center">
+<div class="jumbotron">
   {% if issues_len == 0 %}
   <h1><i class=" text-success fa fa-check-circle"></i></h1>
   <p class="lead">Looks like we are good here.</p>
   <p class="lead text-success">{{ issues_len }} Issues Open</p>
   <a href="{{ url_for('issue.issue') }}" class="btn btn-success">Post an Issue</a>
-  {% else %}
-  {{ issues_len }} Issues
+  {% else %}  
   {% for issue in issues_ %}
-  {{ issue.name }}
-  {{ issue.description }}
-  {{ issue.priority }}
-  {{ issue.closed }}
-  {{ issue.user_id }}
+  <div class="panel panel-default">  
+  <div class="panel-heading">
+    <button class="btn btn-danger btn-sm">Open Issues <span class="badge">{{ open_issues }}</span></button>
+    <button class="btn btn-success btn-sm">Closed Issues <span class="badge">{{ closed_issues }}</span></button>
+  </div>    
+  <ul class="list-group">
+    <a href="#" class="list-group-item">
+      <h4 class="list-group-item-heading">
+        {{ issue.name }} <small>Priority: {{ issue.priority }} raised by {{ issue.user }}</small>
+      </h4>
+      <p class="list-group-item-text">
+      {% if issue.closed %}
+      <i class=" text-success fa fa-check-circle fa-sm"></i>
+      {% else %}
+      <i class=" text-danger fa fa-exclamation-circle fa-sm"></i>
+      {% endif %}      
+      {{ issue.description }}      
+      </p>
+    </a>    
+  </ul>
+</div>
   {% endfor %}
   {% endif %}
 </div>

@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import StringField, TextAreaField, IntegerField
+from wtforms import StringField, TextAreaField, RadioField
 from wtforms import SubmitField, validators
 
 
@@ -18,5 +18,6 @@ class IssueForm(Form):
     description = TextAreaField('Issue Description',
                                 [validators.required(
                                     message='Please describe your issue.')])
-    priority = IntegerField('Priority')
+    priority = RadioField('Priority', choices=[
+        ('0', 'High'), ('1', 'Medium'), ('2', 'Low')])
     submit = SubmitField('Post Issue')
