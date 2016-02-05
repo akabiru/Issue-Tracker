@@ -3,5 +3,3 @@ venv
 
 *.py[cod]
 
-# sqlite databases
-*.sqlite

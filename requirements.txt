@@ -31,3 +31,4 @@ visitor==0.1.2
 Werkzeug==0.10.4
 wheel==0.26.0
 WTForms==1.0.5
+uwsgi
