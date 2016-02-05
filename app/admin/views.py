@@ -34,6 +34,10 @@ def departments():
             department = Department(name=form.name.data,
                                     dept_head=form.dept_head.data)
             department.creator = curr_user
+            # make user admin
+            user_ = User.query.filter_by(id=form.dept_head.data).first()
+            user_.is_admin = True
+            db.session.add(user_)
             db.session.add(department)
             db.session.commit()
             flash('Department added successfully.')
