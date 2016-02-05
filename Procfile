@@ -1,1 +1,1 @@
-python dealscraper/manager.py
+web: python manager.py runserver
