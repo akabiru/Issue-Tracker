@@ -27,6 +27,8 @@ class ProductionConfig(Config):
     '''This class cofigures the production
     environment properties
     '''
+    PORT = int(os.environ.get("PORT", 5000))
+    HOST = '0.0.0.0'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + \
         os.path.join(basedir, 'data.sqlite')
 
