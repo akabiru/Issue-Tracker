@@ -1,1 +1,1 @@
-web: python manager.py runserver
+web: gunicorn Issue-Tracker:app
