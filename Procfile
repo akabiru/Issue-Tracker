@@ -1,1 +1,2 @@
-web: gunicorn Issue-Tracker:app
+web: gunicorn manage:app
+heroku ps:scale web=1
